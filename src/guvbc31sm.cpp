@@ -54,7 +54,7 @@ unsigned short GUVB::readUVB()
 float GUVB::getUVIndex()
 {
     unsigned short raw = readUVB();
-    return (raw-_offset)/(float)_b_scale;
+    return (raw-_offset)*(float)_b_scale;
 }
 
 // Returns UVB in µW/cm^2
