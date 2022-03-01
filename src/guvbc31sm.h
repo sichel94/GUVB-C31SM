@@ -35,6 +35,9 @@ Distributed as-is; no warranty is given.
 #define GUVB_RANGE_X64		0x06
 #define GUVB_RANGE_X128		0x07
 
+#include <Arduino.h>
+#include <Wire.h>
+
 class GUVB
 {
 	public:
@@ -63,6 +66,6 @@ class GUVB
 
 		byte _offset = 0;
 		unsigned short _b_scale = 0;
-}
+};
 
 #endif

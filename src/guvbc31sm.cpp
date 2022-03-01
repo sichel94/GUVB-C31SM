@@ -9,7 +9,7 @@ Distributed as-is; no warranty is given.
 
 GUVB::GUVB()
 {
-    _i2cPort = Wire;
+    _i2cPort = &Wire;
 }
 
 GUVB::GUVB(TwoWire * w)
@@ -23,8 +23,7 @@ bool GUVB::begin()
     if (_i2cPort == NULL)
         return false;
 
-    if (_i2cPort.begin() == false)
-        return false;
+    _i2cPort->begin();
 
     // Check ID (and comms to IC)
     if (readRegister(GUVB_REG_CHIPID) != GUVB_CHIP_ID)
@@ -55,7 +54,7 @@ unsigned short GUVB::readUVB()
 float GUVB::getUVIndex()
 {
     unsigned short raw = readUVB();
-    return (raw-offset)/(float)_b_scale;
+    return (raw-_offset)/(float)_b_scale;
 }
 
 // Returns UVB in µW/cm^2
